@@ -64,7 +64,7 @@ export function ConversationList({ conversations, onDelete, onEdit, onSave }: Co
             </Button>
           </div>
         ) : (
-          <div className="max-w-3xl mx-auto animate-in fade-in-0 slide-in-from-bottom-2 duration-300 ease-out">
+          <div className="max-w-3xl mx-auto animate-in fade-in-0 slide-in-from-top-20 duration-300 ease-out">
             <QuickLogForm onSave={handleSave} onCancel={() => setShowForm(false)} />
           </div>
         )}
@@ -114,14 +114,15 @@ export function ConversationList({ conversations, onDelete, onEdit, onSave }: Co
           className="hover:bg-muted/30 transition-colors cursor-pointer border-0 shadow-sm bg-transparent"
           onClick={() => setShowForm((prev) => !prev)}
         >
-          <CardContent className="p-2">
-            <div className="flex items-center justify-center gap-2">
-              <span className="font-medium">{showForm ? "- Hide" : "+ Log New Interaction"}</span>
+          <CardContent className="py-0 px-0">
+            <div className="flex items-center justify-center">
+              <span className="font-medium text-sm leading-tight">{showForm ? "- Hide" : "+ Log New Interaction"}</span>
             </div>
           </CardContent>
         </Card>
+
         {showForm && (
-          <div className="animate-in fade-in-5 slide-in-from-top-2 duration-1000 ease-out">
+          <div className="animate-in fade-in-5 slide-in-from-top-20 duration-1000 ease-out">
             <QuickLogForm onSave={handleSave} onCancel={() => setShowForm(false)} />
           </div>
         )}
