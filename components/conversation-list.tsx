@@ -57,7 +57,18 @@ export function ConversationList({ conversations, onDelete, onEdit, onSave }: Co
         <div className="text-muted-foreground">
           <MessageCircle className="w-12 h-12 mx-auto mb-4 opacity-30" />
           <p className="text-lg mb-1">No interactions yet</p>
-          <p className="text-sm">Start by logging your first interaction</p>
+          <p className="text-sm mb-6">Start by logging your first interaction</p>
+          <Dialog open={showModal} onOpenChange={setShowModal}>
+            <DialogTrigger asChild>
+              <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Plus className="w-4 h-4 mr-2" />
+                Log Interaction
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-none w-[90vw] max-h-[90vh] overflow-y-auto custom-scrollbar">
+              <QuickLogForm onSave={handleSave} onCancel={() => setShowModal(false)} />
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     )
@@ -150,8 +161,8 @@ export function ConversationList({ conversations, onDelete, onEdit, onSave }: Co
                   <div className="flex items-center justify-between">
                     <div className="text-xs text-muted-foreground">
                       {conversation.reflection.didWell ||
-                      conversation.reflection.couldImprove ||
-                      conversation.reflection.learned ? (
+                        conversation.reflection.couldImprove ||
+                        conversation.reflection.learned ? (
                         <span className="text-green-500">✓ Reflected</span>
                       ) : (
                         <span className="text-yellow-500">○ Pending</span>
